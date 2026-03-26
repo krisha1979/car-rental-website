@@ -1,0 +1,258 @@
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 120px 5% 40px 5%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 400px;
+  background: radial-gradient(ellipse at top, rgba(255,255,255,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ctaSection {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ctaTitle {
+  font-size: 64px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  line-height: 1.1;
+  letter-spacing: -2px;
+}
+
+.ctaSubtitle {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 40px;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.bookNow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  color: #000;
+  padding: 8px 8px 8px 32px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bookNow:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.iconCircle {
+  background: #000;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconCircle svg {
+  transform: rotate(-45deg);
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.mainFooter {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  gap: 64px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.brandCol {
+  flex: 1.5;
+  max-width: 360px;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.brandText {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.newsletter {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 100px;
+  padding: 6px 6px 6px 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: border-color 0.3s;
+}
+
+.newsletter:focus-within {
+  border-color: rgba(255,255,255,0.3);
+}
+
+.newsletterInput {
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.newsletterInput::placeholder {
+  color: #666;
+}
+
+.newsletterBtn {
+  background: #fff;
+  color: #000;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.newsletterBtn:hover {
+  opacity: 0.8;
+}
+
+.linksCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.linkTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #fff;
+}
+
+.linkItem {
+  color: #888;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 16px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  width: max-content;
+}
+
+.linkItem:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.bottomFooter {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.copyright {
+  font-size: 13px;
+  color: #666;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+}
+
+.socialIcon {
+  color: #888;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.socialIcon:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+.socialIcon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+@media (max-width: 1024px) {
+  .mainFooter {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .brandCol {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+  .ctaTitle {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottomFooter {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+  .linksCol {
+    flex: 1 1 45%;
+  }
+}

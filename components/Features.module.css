@@ -1,0 +1,214 @@
+.section {
+  background-color: #000;
+  padding: 80px 5%;
+  width: 100%;
+  color: #fff;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.title {
+  font-size: 38px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  text-transform: capitalize;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #888;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 400px 400px;
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLeft {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.cardTopMid {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.cardTopRight {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.cardBottom {
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 1;
+}
+
+.image {
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContentCentered {
+  align-items: center;
+  text-align: center;
+}
+
+.textGroup {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.textBold {
+  font-weight: 600;
+  color: #fff;
+}
+
+.textMuted {
+  font-weight: 400;
+  color: #999;
+}
+
+.topRightBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+
+.topRightBtn:hover {
+  opacity: 0.8;
+}
+
+.exploreMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  color: #000;
+  padding: 6px 6px 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  width: max-content;
+  margin-top: 24px;
+  transition: opacity 0.3s;
+}
+
+.exploreMoreBtn:hover {
+  opacity: 0.8;
+}
+
+.iconCircle {
+  background: #000;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconCircle svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .cardLeft {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+    height: 400px;
+  }
+  .cardTopMid {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    height: 250px;
+  }
+  .cardTopRight {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    height: 250px;
+  }
+  .cardBottom {
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+    height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 40px 16px; }
+  .title { font-size: 32px; }
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+  .cardLeft, .cardTopMid, .cardTopRight, .cardBottom {
+    grid-column: 1 / span 1;
+    grid-row: auto;
+    height: 320px;
+  }
+}

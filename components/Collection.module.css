@@ -1,0 +1,192 @@
+.section {
+  background-color: #000;
+  padding: 40px 0 80px 0;
+  width: 100%;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 40px;
+  margin: 0 5%;
+  padding: 32px;
+  display: flex;
+  gap: 48px;
+}
+
+.leftCol {
+  flex: 1;
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.leftImage {
+  object-fit: cover;
+}
+
+.rightCol {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.title {
+  font-size: 38px;
+  color: #111;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.grid {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  flex: 1;
+  background-color: #f5f5f5;
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 24px;
+}
+
+.cardImage {
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+
+.cardStats {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.cardStats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cardTitle {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.cardPrice {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.cardBtn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.cardBtn:hover {
+  opacity: 0.8;
+}
+
+.viewAllWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.viewAllBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #000;
+  color: #fff;
+  padding: 6px 6px 6px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s ease;
+}
+
+.viewAllBtn:hover {
+  opacity: 0.9;
+}
+
+.iconCircle {
+  background: #fff;
+  color: #000;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconCircle svg {
+  transform: rotate(-45deg);
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    margin: 0;
+    border-radius: 0;
+  }
+  .leftCol {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    flex-direction: column;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .container {
+    padding: 24px 16px;
+  }
+}

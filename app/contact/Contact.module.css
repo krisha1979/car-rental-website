@@ -1,0 +1,250 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Removed min-height to prevent forced scrolling on small viewports */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #fff;
+  background-color: #0d0d0d;
+}
+
+.backgroundImage {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.8) 80%, #0d0d0d 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 5%;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 32px;
+  border-radius: 100px;
+}
+
+.navLinkOuter {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+.navLinkOuter:hover {
+  color: #ffffff;
+}
+
+.bodyWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5% 5vh;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.mainContent {
+  width: 45%;
+}
+
+.title {
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 15px;
+  color: #a3a3a3;
+  line-height: 1.6;
+  max-width: 80%;
+}
+
+.contactInfoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconCircle {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.infoText {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.infoLabel {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.formContainer {
+  width: 400px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 32px;
+}
+
+.formTitle {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.formGroup {
+  margin-bottom: 12px;
+}
+
+.input, .textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.input::placeholder, .textarea::placeholder {
+  color: #666;
+}
+
+.input:focus, .textarea:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 6px 6px 24px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.submitBtn:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+}
+
+.submitBtnIcon {
+  background: #000;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitBtnIcon svg {
+  transform: rotate(-45deg);
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+@media (max-width: 1024px) {
+  .title { font-size: 48px; }
+  .formContainer { width: 350px; }
+}
+
+@media (max-width: 768px) {
+  .heroSection { height: auto; min-height: 100vh; overflow-y: auto; }
+  .nav { display: none; }
+  .backgroundOverlay { position: fixed; }
+  
+  .bodyWrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px 5%;
+    gap: 48px;
+  }
+  
+  .mainContent {
+    width: 100%;
+  }
+  
+  .formContainer {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}

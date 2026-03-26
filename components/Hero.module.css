@@ -1,0 +1,319 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #fff;
+  background-color: #0d0d0d;
+}
+
+.backgroundImage {
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.6) 80%, #000 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 5%;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 32px;
+  border-radius: 100px;
+}
+
+.navLinkOuter {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+.navLinkOuter:hover {
+  color: #ffffff;
+}
+
+.bookNow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  color: #000;
+  padding: 6px 6px 6px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s ease;
+}
+
+.bookNow:hover {
+  opacity: 0.9;
+}
+
+.iconCircle {
+  background: #000;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconCircle svg {
+  transform: rotate(-45deg);
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+.socialSidebar {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.socialIcon {
+  color: rgba(255,255,255,0.6);
+  transition: color 0.3s ease;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  padding: 8px;
+  box-sizing: content-box;
+}
+
+.socialIcon:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.socialIcon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.statsRight {
+  position: absolute;
+  right: 5%;
+  top: 35%;
+  text-align: right;
+  z-index: 10;
+}
+
+.statsNumber {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.statsValue {
+  font-size: 48px;
+  font-weight: 300;
+}
+
+.statsText {
+  font-size: 20px;
+  font-weight: 300;
+  color: #e5e5e5;
+  letter-spacing: 0.5px;
+}
+
+.statsSubText {
+  font-size: 14px;
+  color: #999;
+  max-width: 140px;
+  margin-left: auto;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.mainContent {
+  position: absolute;
+  bottom: 120px; 
+  left: 5%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 10;
+}
+
+.titleContainer {
+  max-width: 55%;
+}
+
+.title {
+  font-size: 64px;
+  line-height: 1.1;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 0;
+  /* Specific square-like tech font loaded in component */
+}
+
+.description {
+  max-width: 32%;
+  font-size: 14px;
+  color: #a3a3a3;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.bottomBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 24px 5%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  justify-content: space-between;
+  gap: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.bottomItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  padding-right: 24px;
+}
+
+.bottomItem:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.5px;
+}
+
+.checkIconContainer {
+  width: 14px;
+  height: 14px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkIconContainer svg {
+  width: 8px;
+  height: 8px;
+  stroke: rgba(255,255,255,0.7);
+  stroke-width: 3;
+}
+
+.itemValue {
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* RESPONSIVE HERO RULES */
+@media (max-width: 1024px) {
+  .title { font-size: 48px; }
+  .bottomItem { border-right: none; padding-right: 0px; }
+  .bottomBar { overflow-x: auto; gap: 16px; justify-content: flex-start; }
+}
+
+@media (max-width: 768px) {
+  .heroSection { min-height: 700px; }
+  .header { padding: 24px 5%; }
+  .nav { display: none; }
+  .bookNow { padding: 4px 4px 4px 16px; font-size: 12px; }
+  .iconCircle { width: 28px; height: 28px; }
+
+  .mainContent { 
+    flex-direction: column; 
+    align-items: flex-start;
+    bottom: 110px; 
+    gap: 16px;
+  }
+  .titleContainer { max-width: 100%; }
+  .title { font-size: 32px; }
+  .description { max-width: 100%; font-size: 13px; }
+  
+  .statsRight { top: 15%; right: 5%; }
+  .statsValue { font-size: 32px; }
+  .statsText { font-size: 14px; }
+  
+  .socialSidebar { display: none; }
+  
+  .bottomBar {
+    padding: 16px 5%;
+    gap: 16px;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .bottomBar::-webkit-scrollbar { display: none; }
+  .bottomItem { 
+    min-width: 130px; 
+    border-right: 1px solid rgba(255,255,255,0.1); 
+    padding-right: 16px; 
+  }
+}
