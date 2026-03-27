@@ -280,7 +280,7 @@
 }
 
 @media (max-width: 768px) {
-  .heroSection { min-height: 700px; }
+  .heroSection { min-height: 100vh; }
   .header { padding: 24px 5%; }
   .nav { display: none; }
   .bookNow { padding: 4px 4px 4px 16px; font-size: 12px; }

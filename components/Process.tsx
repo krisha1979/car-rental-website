@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Michroma, Inter } from 'next/font/google';
 import { motion, AnimatePresence } from 'motion/react';
+import Link from 'next/link';
 import styles from './Process.module.css';
 
 import { SiTesla, SiBmw, SiAudi, SiPorsche, SiFord, SiHonda, SiToyota, SiNissan } from 'react-icons/si';
@@ -76,14 +77,16 @@ export default function Process() {
             Experience the ease of renting your dream car with our seamless process. In just three simple steps, you can choose your luxury vehicle, select your rental dates.
           </p>
 
-          <button className={styles.bookNow}>
-            Book Now
-            <div className={styles.iconCircle}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </div>
-          </button>
+          <Link href="/fleet" style={{ textDecoration: 'none' }}>
+            <button className={styles.bookNow}>
+              Book Now
+              <div className={styles.iconCircle}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </button>
+          </Link>
         </div>
 
         {/* Right Column (Steps Accordion) */}

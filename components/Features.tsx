@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Michroma, Inter } from 'next/font/google';
 import { motion } from 'motion/react';
+import Link from 'next/link';
 import styles from './Features.module.css';
 
 const michroma = Michroma({ weight: '400', subsets: ['latin'] });
@@ -88,9 +89,11 @@ export default function Features() {
             className={styles.image}
           />
           <div className={styles.mask} />
-          <button className={styles.topRightBtn}>
-            <ArrowUpRight />
-          </button>
+          <Link href="/fleet" style={{ textDecoration: 'none' }}>
+            <button className={styles.topRightBtn}>
+              <ArrowUpRight />
+            </button>
+          </Link>
           <div className={styles.cardContent}>
             <div className={styles.textGroup}>
               <span className={styles.textBold}>Flexible Rentals<br /></span>
@@ -108,9 +111,11 @@ export default function Features() {
             className={styles.image}
           />
           <div className={styles.mask} />
-          <button className={styles.topRightBtn}>
-            <ArrowUpRight />
-          </button>
+          <Link href="/fleet" style={{ textDecoration: 'none' }}>
+            <button className={styles.topRightBtn}>
+              <ArrowUpRight />
+            </button>
+          </Link>
           <div className={styles.cardContent}>
             <div className={styles.textGroup}>
               <span className={styles.textBold}>Unmatched<br /></span>
@@ -128,9 +133,11 @@ export default function Features() {
             className={styles.image}
           />
           <div className={styles.mask} />
-          <button className={styles.topRightBtn}>
-            <ArrowUpRight />
-          </button>
+          <Link href="/fleet" style={{ textDecoration: 'none' }}>
+            <button className={styles.topRightBtn}>
+              <ArrowUpRight />
+            </button>
+          </Link>
           <div className={`${styles.cardContent} ${styles.cardContentCentered}`}>
             <div className={styles.textGroup}>
               <span className={styles.textBold}>Travel Safely with Fully Insured, <br /></span>

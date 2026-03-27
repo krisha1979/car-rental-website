@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5% 5vh;
+  padding: 120px 5% 5vh;
   position: relative;
   z-index: 10;
   width: 100%;
@@ -235,7 +235,7 @@
   .bodyWrapper {
     flex-direction: column;
     justify-content: flex-start;
-    padding: 40px 5%;
+    padding: 120px 5% 40px;
     gap: 48px;
   }
   

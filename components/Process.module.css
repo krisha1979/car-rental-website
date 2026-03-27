@@ -262,6 +262,7 @@
 @media (max-width: 640px) {
   .section {
     padding: 60px 16px;
+    min-height: auto;
   }
   .title {
     font-size: 32px;

@@ -137,12 +137,14 @@ export default function Collection() {
                   <span style={{ fontSize: '11px', fontWeight: '400', color: '#666' }}>/day</span>
                 </div>
 
-                <button className={styles.cardBtn}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </button>
+                <Link href={`/fleet/${car.id}`} style={{ textDecoration: 'none' }}>
+                  <button className={styles.cardBtn}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
