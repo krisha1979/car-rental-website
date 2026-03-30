@@ -67,11 +67,13 @@ function CheckoutForm() {
             }),
           });
           
+          const data = await res.json().catch(() => ({}));
+          
           if (!res.ok) {
-            const errorData = await res.json();
-            console.error("API Error sending receipt:", errorData);
+            console.error("API Error sending receipt:", data.message || "Unknown error", data.error || "");
+            // Optionally show an alert to the user if you want them to know the email failed
           } else {
-            console.log("Receipt sent successfully");
+            console.log("Receipt sent successfully:", data.messageId);
           }
         } catch (err) {
           console.error("Failed to send receipt fetch call:", err);
