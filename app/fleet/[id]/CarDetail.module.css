@@ -143,6 +143,21 @@
   margin-bottom: 16px;
 }
 
+.dateRow {
+  display: flex;
+  gap: 16px;
+}
+.dateRow .formGroup {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .dateRow {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
 .label {
   display: block;
   font-size: 12px;

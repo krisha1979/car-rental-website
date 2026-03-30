@@ -2,7 +2,7 @@
 import React, { useEffect, useState, use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { Michroma, Inter } from 'next/font/google';
 import { motion } from 'motion/react';
 import styles from './CarDetail.module.css';
@@ -18,6 +18,7 @@ export default function CarDetailPage({ params }: { params: Promise<{ id: string
   const car = carsData.find((c) => c.id.toString() === resolvedParams.id);
 
   const [reservationState, setReservationState] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [minDate, setMinDate] = useState('');
   const [formData, setFormData] = useState({
     pickup: '',
     dropoff: '',
@@ -29,20 +30,33 @@ export default function CarDetailPage({ params }: { params: Promise<{ id: string
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const router = useRouter();
+
   const handleReserve = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.pickup || !formData.dropoff || !formData.startDate || !formData.endDate) {
       alert("Please fill in all fields.");
       return;
     }
+    
     setReservationState('submitting');
-    setTimeout(() => {
-      setReservationState('success');
-    }, 1500);
+    
+    const query = new URLSearchParams({
+      carId: car?.id.toString() || '',
+      pickup: formData.pickup,
+      dropoff: formData.dropoff,
+      startDate: formData.startDate,
+      endDate: formData.endDate
+    }).toString();
+    
+    router.push(`/checkout?${query}`);
   };
 
   useEffect(() => {
     setIsReady(true);
+    const today = new Date();
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    setMinDate(`${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`);
   }, []);
 
   if (!car) {
@@ -137,27 +151,6 @@ export default function CarDetailPage({ params }: { params: Promise<{ id: string
               {car.price} <span>/day</span>
             </div>
 
-            {reservationState === 'success' ? (
-              <div className={styles.successMessage}>
-                <div className={styles.successIcon}>
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </div>
-                <h3 className={styles.successTitle}>Reservation Confirmed</h3>
-                <p className={styles.successText}>
-                  Your request for the {car.name} from {formData.startDate} to {formData.endDate} has been received. Our concierge will contact you shortly.
-                </p>
-                <button
-                  onClick={() => { setReservationState('idle'); setFormData({ pickup: '', dropoff: '', startDate: '', endDate: '' }); }}
-                  className={styles.submitBtn}
-                  style={{ marginTop: '24px', background: 'transparent', color: '#fff', border: '1px solid #333' }}
-                >
-                  Book Another
-                </button>
-              </div>
-            ) : (
               <form onSubmit={handleReserve}>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Pick-up Location</label>
@@ -167,20 +160,21 @@ export default function CarDetailPage({ params }: { params: Promise<{ id: string
                   <label className={styles.label}>Drop-off Location</label>
                   <input type="text" name="dropoff" value={formData.dropoff} onChange={handleInputChange} required placeholder="Enter city or airport" className={styles.input} />
                 </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Start Date</label>
-                  <input type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} onClick={(e) => 'showPicker' in e.currentTarget && e.currentTarget.showPicker()} required className={styles.input} />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>End Date</label>
-                  <input type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} onClick={(e) => 'showPicker' in e.currentTarget && e.currentTarget.showPicker()} required className={styles.input} />
+                <div className={styles.dateRow}>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Start Date</label>
+                    <input type="date" name="startDate" value={formData.startDate} min={minDate} onChange={handleInputChange} onClick={(e) => 'showPicker' in e.currentTarget && e.currentTarget.showPicker()} required className={styles.input} />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>End Date</label>
+                    <input type="date" name="endDate" value={formData.endDate} min={formData.startDate || minDate} onChange={handleInputChange} onClick={(e) => 'showPicker' in e.currentTarget && e.currentTarget.showPicker()} required className={styles.input} />
+                  </div>
                 </div>
 
                 <button type="submit" disabled={reservationState === 'submitting'} className={styles.submitBtn}>
                   {reservationState === 'submitting' ? 'Processing...' : 'Reserve Now'}
                 </button>
               </form>
-            )}
           </div>
         </motion.div>
       </div>
