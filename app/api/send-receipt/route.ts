@@ -1,24 +1,21 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
-
-// Initialize Resend with your API Key
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { 
-      email, 
-      firstName, 
-      lastName, 
-      carName, 
-      totalPrice, 
-      pickup, 
-      dropoff, 
-      days 
+    const {
+      email,
+      firstName,
+      lastName,
+      carName,
+      totalPrice,
+      pickup,
+      dropoff,
+      days
     } = body;
 
-    // Validation
+    // Basic Validation
     if (!email || !firstName || !carName || !totalPrice) {
       console.error('Missing fields:', { email, firstName, carName, totalPrice });
       return NextResponse.json(
@@ -27,15 +24,26 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 're_...') {
-      console.error('RESEND_API_KEY is missing or not configured.');
+    // SMTP Credential Check
+    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.error('SMTP credentials missing in .env.local');
       return NextResponse.json(
-        { message: 'Email service not configured. Please add RESEND_API_KEY to your environment variables.' },
+        { message: 'Email server credentials not configured.' },
         { status: 500 }
       );
     }
 
-    // Create the email HTML content
+    // Configure Nodemailer for Gmail
+    // We use service: 'gmail' which is simpler and more reliable for Gmail accounts.
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS, // Use a 16-character App Password here
+      },
+    });
+
+    // Create the branded HTML content
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; border: 1px solid #eee; border-radius: 10px; padding: 20px;">
         <h2 style="color: #000; text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px;">LUX RIDE - RECEIPT</h2>
@@ -73,34 +81,26 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    // Send the email using Resend
-    // While in onboarding/testing, use onboarding@resend.dev as 'from'
-    const { data, error } = await resend.emails.send({
-      from: 'Lux Ride <onboarding@resend.dev>',
-      to: [email],
+    // Send the email
+    // NOTE: Gmail REQUIRES the 'from' email to be your SMTP_USER or a verified alias.
+    const info = await transporter.sendMail({
+      from: `"Lux Ride" <${process.env.SMTP_USER}>`,
+      to: email,
       subject: `Payment Receipt: ${carName}`,
       html: htmlContent,
     });
 
-    if (error) {
-      console.error('Resend API Error:', error);
-      return NextResponse.json(
-        { message: 'Failed to send receipt email via provider', error },
-        { status: 500 }
-      );
-    }
+    console.log('Nodemailer sent: %s', info.messageId);
 
-    console.log('Email sent successfully:', data?.id);
-    
     return NextResponse.json(
-      { message: 'Receipt sent successfully', data },
+      { message: 'Receipt sent successfully', messageId: info.messageId },
       { status: 200 }
     );
-    
+
   } catch (error) {
-    console.error('Server error sending receipt email:', error);
+    console.error('Nodemailer failure:', error);
     return NextResponse.json(
-      { message: 'Internal server error', error: String(error) },
+      { message: 'Failed to send receipt email', error: String(error) },
       { status: 500 }
     );
   }

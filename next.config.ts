@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    // Limit parallelism to save memory
+    cpus: 1,
+  }
 };
 
 

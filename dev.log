@@ -1,0 +1,19 @@
+
+> carrental@0.1.0 dev
+> NODE_OPTIONS='--max-old-space-size=8192' next dev
+
+⚠ Port 3000 is in use by process 38199, using available port 3001 instead.
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://172.20.10.4:3001
+- Environments: .env.local
+✓ Ready in 304ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          38199
+- Dir:          /Users/kp/Documents/projects/car-rental-website
+- Log:          .next/dev/logs/next-development.log
+
+Run kill 38199 to stop it.
+[?25h
