@@ -23,6 +23,9 @@ function CheckoutForm() {
 
   const [paymentState, setPaymentState] = useState<'idle' | 'processing'>('idle');
   const [cardNumber, setCardNumber] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
 
   // Calculate days and total price
   let days = 1;
@@ -43,10 +46,30 @@ function CheckoutForm() {
     setPaymentState('processing');
 
     // Simulate payment processing time
-    setTimeout(() => {
+    setTimeout(async () => {
       // Simple validation for simulated payment success
       const normalizedCard = cardNumber.replace(/\s/g, '');
       if (normalizedCard.startsWith('4242')) {
+        // Send email receipt
+        try {
+          await fetch('/api/send-receipt', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              firstName,
+              lastName,
+              carName: car.name,
+              totalPrice: formattedTotal,
+              pickup,
+              dropoff,
+              days
+            }),
+          });
+        } catch (err) {
+          console.error("Failed to send receipt:", err);
+        }
+
         router.push('/success');
       } else {
         router.push('/payment-failed');
@@ -76,15 +99,15 @@ function CheckoutForm() {
             <div className={styles.formGrid}>
               <div className={styles.formGroup}>
                 <label className={styles.label}>First Name</label>
-                <input required type="text" className={styles.input} placeholder="John" />
+                <input required type="text" className={styles.input} placeholder="John" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Last Name</label>
-                <input required type="text" className={styles.input} placeholder="Doe" />
+                <input required type="text" className={styles.input} placeholder="Doe" value={lastName} onChange={(e) => setLastName(e.target.value)} />
               </div>
               <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                 <label className={styles.label}>Email Address</label>
-                <input required type="email" className={styles.input} placeholder="john@example.com" />
+                <input required type="email" className={styles.input} placeholder="john@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                 <label className={styles.label}>Phone Number</label>
