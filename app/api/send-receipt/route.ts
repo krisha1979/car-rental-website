@@ -39,11 +39,33 @@ export async function POST(req: Request) {
       );
     }
 
-    // Configure Nodemailer for Gmail
+    // Configure Nodemailer for Gmail (Serverless Optimized)
+    // On Vercel, Port 465 with secure:true is often more reliable than Port 587.
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // Use SSL/TLS
       auth: { user, pass },
+      // Increase timeout for serverless handshake
+      connectionTimeout: 10000, 
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
     });
+
+    // Verify connection before sending
+    try {
+      await transporter.verify();
+    } catch (verifyError) {
+      console.error('Nodemailer verification failed:', verifyError);
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: 'Failed to connect to Gmail server. Check your App Password.',
+          error: String(verifyError)
+        },
+        { status: 500 }
+      );
+    }
 
     // Branded HTML Receipt Template
     const htmlContent = `
@@ -92,6 +114,7 @@ export async function POST(req: Request) {
     `;
 
     // Send the email
+    // NOTE: In serverless (Vercel), you MUST await this entirely
     const info = await transporter.sendMail({
       from: `"Lux Ride" <${user}>`,
       to: email,
@@ -111,7 +134,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       { 
         success: false, 
-        message: 'Failed to send email. Ensure you are using a 16-character Gmail App Password.', 
+        message: 'Failed to send email. Check your Gmail App Password and Vercel Env Variables.', 
         error: error instanceof Error ? error.message : String(error) 
       },
       { status: 500 }
