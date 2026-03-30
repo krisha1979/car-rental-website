@@ -52,7 +52,7 @@ function CheckoutForm() {
       if (normalizedCard.startsWith('4242')) {
         // Send email receipt
         try {
-          await fetch('/api/send-receipt', {
+          const res = await fetch('/api/send-receipt', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -66,8 +66,15 @@ function CheckoutForm() {
               days
             }),
           });
+          
+          if (!res.ok) {
+            const errorData = await res.json();
+            console.error("API Error sending receipt:", errorData);
+          } else {
+            console.log("Receipt sent successfully");
+          }
         } catch (err) {
-          console.error("Failed to send receipt:", err);
+          console.error("Failed to send receipt fetch call:", err);
         }
 
         router.push('/success');
